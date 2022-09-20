@@ -1,0 +1,27 @@
+ORM query for creating an object ****
+
+Modulename.objects.create(field1=value,field2=value2,.......)
+
+Books.objects.create(name="ramdamoozam",author="mt",price=450,publisher="abc",qty=45)
+
+
+FOR LISTING ALL RECORDS IN ORM  *****
+
+Modelname.objects.all()
+
+qs=Books.objects.all()
+
+TO FETCH A SPECIFIC RESOURSE IN ORM ***********
+
+data=Modelname.objects.get(id=2)
+
+FILTER QUERIS **********
+
+QS=mODELNAME.OBJECTS.FILTER(PRICE__LT=550)
+qs=modelname.objects.filter(qty__gt=40)
+
+EXCLUDE**********
+
+data=Books.objects.all().exclude(price=500)
+
+data=Books.objects.filter(price__gte=550,price__lte=700)
