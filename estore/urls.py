@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path
 #from api.views import ProductsView,MorningView,AddView,SubView,MulView,DivView,ModView
 from api.views import CubeView,Numcheck,FactView,WordCountView,ProductsView,ProductDetailsView,\
-    ReviewView,ReviewDetailsView
-
+    ReviewView,ReviewDetailsView,ProductsViewsetView
+from rest_framework.routers import  DefaultRouter
+router=DefaultRouter()
+router.register("api/v1/products",ProductsViewsetView,basename="products")
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("cube",CubeView.as_view()),
@@ -30,15 +32,11 @@ urlpatterns = [
     path("reviews",ReviewView.as_view()),
     path("reviews/<int:id>",ReviewDetailsView.as_view())
 
-
-
-
-
-    # path("products",ProductsView.as_view()),
+     # path("products",ProductsView.as_view()),
     # path("morning",MorningView.as_view()),
     # path("add",AddView.as_view()),
     # path("sub", SubView.as_view()),
     # path("mul", MulView.as_view()),
     # path("div", DivView.as_view()),
     # path("mod",ModView.as_view())
-]
+]+router.urls

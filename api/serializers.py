@@ -12,6 +12,43 @@ class BookSerializer(serializers.Serializer):
     publisher = serializers.CharField()
     qty = serializers.IntegerField()
 
+    def create(self,validated_data):
+        return Books.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.name=validated_data.get("name")
+        instance.author=validated_data("author")
+        instance.price=validated_data("price")
+        instance.publisher=validated_data("publisher")
+        instance.qty=validated_data("qty")
+        instance.save()
+        return instance
+
+
+
+
+
+    # def validate_price(self,value):
+    #     if value not in range(50,1000):
+    #         raise serializers.ValidationError("invalid price")
+    #     return value
+    #
+    # def validate_qty(self,value):
+    #     if value not in range(1,500):
+    #         raise serializers.ValidationError("invalid quantity")
+    #     return value
+
+    # def validate(self, data):
+    #     price = data.get("price")
+    #     # print("price",price)
+    #     qty=data.get("qty")
+    #     if qty not in range(1,500):
+    #         raise serializers.ValidationError("invalid quantity")
+    #
+    #     if price not in range(50, 1000):
+    #         raise serializers.ValidationError("invalid price")
+    #     return data
+
 
 class BookModelSerializer(serializers.ModelSerializer):
     id = serializers.CharField(read_only=True)
@@ -26,5 +63,4 @@ class ReviewSerializer(serializers.ModelSerializer):
         model = Reviews
         fields="__all__"
         #exclude = ("created_date",)
-
 
